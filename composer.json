@@ -1,0 +1,16 @@
+{
+    "name": "vtsoftware/swoole-table-xtended",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "VtSoftware\\SwooleTableXtended\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tamas Verten",
+            "email": "tamas@verten.hu"
+        }
+    ],
+    "require": {}
+}
