@@ -1,9 +1,9 @@
 {
-    "name": "vtsoftware/swoole-table-xtended",
+    "name": "vtsoftware/swoole-xtended",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "VtSoftware\\SwooleTableXtended\\": "src/"
+            "VtSoftware\\SwooleXtended\\": "src/"
         }
     },
     "authors": [
