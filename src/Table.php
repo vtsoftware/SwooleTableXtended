@@ -2,7 +2,7 @@
 namespace VtSoftware\SwooleXtended;
 
 use \Closure;
-use \Swoole\Table;
+use \Swoole\Table AS SwooleTable;
 
 class Table {
   const COL_SIZE_INT8 = 1;
@@ -11,22 +11,22 @@ class Table {
   const COL_SIZE_INT32 = 4;
 
   private String $indexColumnName = '';
-  private Table $instance;
+  private SwooleTable $instance;
 
   public static function new(int $size = 1024): static {
     return new static($size);
   }
 
   public function __construct(int $size = 1024) {
-    $this->instance = new Table($size);
+    $this->instance = new SwooleTable($size);
   }
 
   public function columns(array $cols): static {
     foreach ($cols as $colKey => $colPrefs) {
       switch ($colPrefs['type']) {
-        case 'int': $type = Table::TYPE_INT; break;
-        case 'string': $type = Table::TYPE_STRING; break;
-        case 'float': $type = Table::TYPE_FLOAT; break;
+        case 'int': $type = SwooleTable::TYPE_INT; break;
+        case 'string': $type = SwooleTable::TYPE_STRING; break;
+        case 'float': $type = SwooleTable::TYPE_FLOAT; break;
       }
 
       $this->instance->column($colKey, $type, $colPrefs['size']);
