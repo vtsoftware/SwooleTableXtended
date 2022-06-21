@@ -3,6 +3,10 @@
 namespace VtSoftware\SwooleTableXtended;
 
 class SwooleTableXtended {
+  const int COL_TYPE_INT = 1;
+  const int COL_TYPE_STRING = 7;
+  const int COL_TYPE_FLOAT = 6;
+
   private String $indexColumnName = '';
   private \Swoole\Table $instance;
 
@@ -15,8 +19,8 @@ class SwooleTableXtended {
   }
 
   public function columns(array $cols): static {
-    foreach ($cols as $colKey) {
-      $this->instance->column($colKey, \Swoole\Table::TYPE_STRING, 128);
+    foreach ($cols as $colKey => $colPrefs) {
+      $this->instance->column($colKey, $colPrefs['type'], $colPrefs['size']);
     }
     $this->instance->create();
     return $this;
