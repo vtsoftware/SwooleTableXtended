@@ -3,9 +3,9 @@
 namespace VtSoftware\SwooleTableXtended;
 
 class SwooleTableXtended {
-  const int COL_TYPE_INT = 1;
-  const int COL_TYPE_STRING = 7;
-  const int COL_TYPE_FLOAT = 6;
+  const COL_TYPE_INT = 1;
+  const COL_TYPE_STRING = 7;
+  const COL_TYPE_FLOAT = 6;
 
   private String $indexColumnName = '';
   private \Swoole\Table $instance;
