@@ -48,7 +48,7 @@ class Table {
     }
     return $this;
   }
-  public function get(): array|String|bool {
+  public function get(): array|String|int|float|bool {
     $argc = \func_num_args();
     $args = \func_get_args();
 
@@ -144,7 +144,7 @@ class Table {
 
     return $rows;
   }
-  public function set(String $indexValue, String $column, String $value) {
+  public function set(String $indexValue, String $column, String|int|float $value) {
     $row = $this->get('index_'.$indexValue);
     $row[$column] = $value;
     $this->instance->set('index_'.$indexValue, $row);
