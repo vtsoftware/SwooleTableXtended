@@ -136,4 +136,11 @@ class SwooleTableXtended {
     $row[$column] = $value;
     $this->instance->set('index_'.$indexValue, $row);
   }
+  public function dump(): array {
+    $result = array();
+    foreach($table as $row) {
+      $result[] = $row;
+    }
+    return $result;
+  }
 }
