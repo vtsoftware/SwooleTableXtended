@@ -138,7 +138,7 @@ class SwooleTableXtended {
   }
   public function dump(): array {
     $result = array();
-    foreach($table as $row) {
+    foreach($this->instance as $row) {
       $result[] = $row;
     }
     return $result;
