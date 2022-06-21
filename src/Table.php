@@ -1,26 +1,35 @@
 <?php declare(strict_types=1);
+namespace VtSoftware\SwooleXtended;
 
-namespace VtSoftware\SwooleTableXtended;
+use \Closure;
+use \Swoole\Table;
 
-class SwooleTableXtended {
-  const COL_TYPE_INT = 1;
-  const COL_TYPE_STRING = 7;
-  const COL_TYPE_FLOAT = 6;
+class Table {
+  const COL_SIZE_INT8 = 1;
+  const COL_SIZE_INT16 = 2;
+  const COL_SIZE_INT64 = 8;
+  const COL_SIZE_INT32 = 4;
 
   private String $indexColumnName = '';
-  private \Swoole\Table $instance;
+  private Table $instance;
 
   public static function new(int $size = 1024): static {
     return new static($size);
   }
 
   public function __construct(int $size = 1024) {
-    $this->instance = new \Swoole\Table($size);
+    $this->instance = new Table($size);
   }
 
   public function columns(array $cols): static {
     foreach ($cols as $colKey => $colPrefs) {
-      $this->instance->column($colKey, $colPrefs['type'], $colPrefs['size']);
+      switch ($colPrefs['type']) {
+        case 'int': $type = Table::TYPE_INT; break;
+        case 'string': $type = Table::TYPE_STRING; break;
+        case 'float': $type = Table::TYPE_FLOAT; break;
+      }
+
+      $this->instance->column($colKey, $type, $colPrefs['size']);
     }
     $this->instance->create();
     return $this;
@@ -139,12 +148,5 @@ class SwooleTableXtended {
     $row = $this->get('index_'.$indexValue);
     $row[$column] = $value;
     $this->instance->set('index_'.$indexValue, $row);
-  }
-  public function dump(): array {
-    $result = array();
-    foreach($this->instance as $row) {
-      $result[] = $row;
-    }
-    return $result;
   }
 }
